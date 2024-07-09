@@ -1,51 +1,19 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <title>Login</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<h1>Login</h1>-->
-<!--<form th:action="@{/login}" method="post">-->
-<!--    <div>-->
-<!--        <label>Username:</label>-->
-<!--        <input type="text" name="username"/>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <label>Password:</label>-->
-<!--        <input type="password" name="password"/>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <button type="submit">Login</button>-->
-<!--    </div>-->
-<!--</form>-->
-<!--</body>-->
-<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+    <title>Login Page</title>
 </head>
 <body>
-<h1>Login</h1>
-<form th:action="@{/perform_login}" method="post">
-    <div>
-        <label>Username:</label>
-        <input type="text" name="username" />
-    </div>
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password" />
-    </div>
-    <div>
-        <button type="submit">Login</button>
-    </div>
-    <div th:if="${error}">
-        <p th:text="${error}"></p>
-    </div>
-    <div th:if="${message}">
-        <p th:text="${message}"></p>
-    </div>
-</form>
+    <h1>Login</h1>
+    <form  th:action="@{/login}"  method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <input type="submit" value="Login">
+    </form>
 </body>
 </html>
