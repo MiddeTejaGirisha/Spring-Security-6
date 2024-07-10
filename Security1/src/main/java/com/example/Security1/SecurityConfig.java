@@ -21,12 +21,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
-	private final CustomUserDetailsService customUserDetailsService;
-
-	@Autowired
-	public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
-		this.customUserDetailsService = customUserDetailsService;
-	}
+//	private final CustomUserDetailsService customUserDetailsService;
+//
+//	@Autowired
+//	public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
+//		this.customUserDetailsService = customUserDetailsService;
+//	}
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
@@ -46,23 +46,23 @@ public class SecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 
-//	@Bean
-//	public UserDetailsService userDetailsService() {
-//		// Define in-memory user details
-//		UserDetails user = User.builder()
-//				.username("user")
-//				.password(passwordEncoder().encode("password"))
-//				.roles("USER")
-//				.build();
-//
-//		UserDetails admin = User.builder()
-//				.username("admin")
-//				.password(passwordEncoder().encode("password"))
-//				.roles("USER", "ADMIN")
-//				.build();
-//
-//		return new InMemoryUserDetailsManager(user, admin);
-//	}
+	@Bean
+	public UserDetailsService  UserDetailsService () {
+		// Define in-memory user details
+		UserDetails user = User.builder()
+				.username("user")
+				.password(passwordEncoder().encode("password"))
+				.roles("USER")
+				.build();
+
+		UserDetails admin = User.builder()
+				.username("admin")
+				.password(passwordEncoder().encode("password"))
+				.roles("USER", "ADMIN")
+				.build();
+
+		return new InMemoryUserDetailsManager(user, admin);
+	}
 
 //	@Override
 //	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -70,9 +70,9 @@ public class SecurityConfig {
 //				.passwordEncoder(passwordEncoder());
 //	}
 
-	@Bean
-	public UserDetailsService userDetailsService() {
-		return customUserDetailsService;
-	}
+//	@Bean
+//	public UserDetailsService userDetailsService() {
+//		return customUserDetailsService;
+//	}
 
 }
