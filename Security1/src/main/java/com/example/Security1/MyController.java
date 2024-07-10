@@ -16,6 +16,7 @@ public class MyController {
 
     @GetMapping("/default")
     public String defaultAfterLogin(Authentication authentication) {
+        System.out.println("entered");
         if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
             return "redirect:/admin";
         }

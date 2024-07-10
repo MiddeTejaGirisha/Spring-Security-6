@@ -97,7 +97,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authenticationProvider(daoAuthenticationProvider())
+                //.authenticationProvider(daoAuthenticationProvider())
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/login").permitAll() // Allow access to the login page without authentication
