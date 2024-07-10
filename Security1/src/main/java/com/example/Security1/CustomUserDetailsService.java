@@ -30,16 +30,8 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
         }
 
-//        Collection<SimpleGrantedAuthority> authorities = Arrays.stream(appUser.getRoles().split(","))
-//                .map(SimpleGrantedAuthority::new)
-//                .collect(Collectors.toList());
-
-       // return new CUser(appUser.getUsername(), appUser.getPassword(), authorities);
         return new CustomUserDetails(appUser);
 
-//        public AppUser saveUser(AppUser appUser) {
-//            appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
-//            return userRepository.save(appUser);
-//        }
+
     }
 }
