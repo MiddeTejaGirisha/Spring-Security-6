@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.security.Principal;
+
 //
 //
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -46,21 +48,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MyController {
 
     @GetMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("name","name");
+    public String login() {
+//        model.addAttribute("name","name");
 
         return "login";
     }
     @Secured("USER")
     @GetMapping("/user")
-    public String userEndpoint(Model model) {
-        model.addAttribute("message", "User method accessed");
+    public String userEndpoint(Model model, Principal prince) {
+        model.addAttribute("message", "User method accessed and name is"+prince.getName());
         return "user";
     }
 
     @GetMapping("/default")
     public String defaultAfterLogin(Authentication authentication) {
-        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN"))) {
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_"+"ADMIN"))) {
             return "redirect:/admin";
         }
         return "redirect:/user";
