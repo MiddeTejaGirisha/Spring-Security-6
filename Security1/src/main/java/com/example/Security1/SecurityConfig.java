@@ -119,6 +119,7 @@ public class SecurityConfig {
 										response.sendRedirect("/root");
 									}
 								})
+								.permitAll()
 				)
 				.logout(logout ->
 						logout
