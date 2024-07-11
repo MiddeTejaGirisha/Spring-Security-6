@@ -47,6 +47,10 @@ import java.security.Principal;
 @Controller
 public class MyController {
 
+    @GetMapping("/")
+    public String start() {
+        return "redirect:/login";
+    }
     @GetMapping("/login")
     public String login() {
         return "login";
