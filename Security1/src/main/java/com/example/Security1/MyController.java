@@ -46,10 +46,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MyController {
 
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("name","name");
+
         return "login";
     }
-    @Secured("ROLE_USER")
+    @Secured("USER")
     @GetMapping("/user")
     public String userEndpoint(Model model) {
         model.addAttribute("message", "User method accessed");
@@ -58,7 +60,7 @@ public class MyController {
 
     @GetMapping("/default")
     public String defaultAfterLogin(Authentication authentication) {
-        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN"))) {
             return "redirect:/admin";
         }
         return "redirect:/user";
@@ -71,7 +73,7 @@ public class MyController {
         return "admin";
     }
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @Secured({"USER", "ADMIN"})
     @GetMapping("/user-or-admin")
     public String userOrAdminEndpoint(Model model) {
         model.addAttribute("message", "User or Admin method accessed");

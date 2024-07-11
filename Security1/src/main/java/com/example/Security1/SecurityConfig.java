@@ -101,7 +101,7 @@ public class SecurityConfig {
 		http
 				.authorizeRequests(authorizeRequests ->
 						authorizeRequests
-								.requestMatchers("/login").permitAll()
+								.requestMatchers("/page").permitAll()
 								.anyRequest().authenticated()
 				)
 				.formLogin(formLogin ->
