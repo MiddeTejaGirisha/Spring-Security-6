@@ -99,16 +99,26 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
+				.csrf((csrf)->csrf.disable())
 				.authorizeRequests(authorizeRequests ->
 						authorizeRequests
-								.requestMatchers("/page").permitAll()
+								.requestMatchers("/login").permitAll()
 								.anyRequest().authenticated()
 				)
 				.formLogin(formLogin ->
 						formLogin
 								.loginPage("/login")
-								.defaultSuccessUrl("/user")
-								.permitAll()
+								//.defaultSuccessUrl("/default",true)
+								//.permitAll()
+								.successHandler((request, response, authentication) -> {
+									if (authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ADMIN"))) {
+										response.sendRedirect("/admin");
+									} else if (authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_USER"))) {
+										response.sendRedirect("/user");
+									} else {
+										response.sendRedirect("/root");
+									}
+								})
 				)
 				.logout(logout ->
 						logout

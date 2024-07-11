@@ -49,33 +49,35 @@ public class MyController {
 
     @GetMapping("/login")
     public String login() {
-//        model.addAttribute("name","name");
-
         return "login";
     }
-    @Secured("USER")
+    @Secured("ROLE_USER")
     @GetMapping("/user")
-    public String userEndpoint(Model model, Principal prince) {
-        model.addAttribute("message", "User method accessed and name is"+prince.getName());
+    public String userEndpoint(Model model) {
+        model.addAttribute("message", "User method accessed ");
         return "user";
     }
 
-    @GetMapping("/default")
-    public String defaultAfterLogin(Authentication authentication) {
-        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_"+"ADMIN"))) {
-            return "redirect:/admin";
-        }
-        return "redirect:/user";
-    }
+//    @GetMapping("/default")
+//    public String defaultAfterLogin(Authentication authentication) {
+//        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+//            return "redirect:/admin";
+//        }
+//        return "redirect:/user";
+//    }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/admin")
     public String adminEndpoint(Model model) {
         model.addAttribute("message", "Admin method accessed");
         return "admin";
     }
+    @GetMapping("/root")
+    public String home() {
+        return "root";
+    }
 
-    @Secured({"USER", "ADMIN"})
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping("/user-or-admin")
     public String userOrAdminEndpoint(Model model) {
         model.addAttribute("message", "User or Admin method accessed");
