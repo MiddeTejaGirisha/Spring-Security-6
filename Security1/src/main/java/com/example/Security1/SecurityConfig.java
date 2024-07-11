@@ -111,7 +111,7 @@ public class SecurityConfig {
 								//.defaultSuccessUrl("/default",true)
 								//.permitAll()
 								.successHandler((request, response, authentication) -> {
-									if (authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ADMIN"))) {
+									if (authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_ADMIN"))) {
 										response.sendRedirect("/admin");
 									} else if (authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_USER"))) {
 										response.sendRedirect("/user");
