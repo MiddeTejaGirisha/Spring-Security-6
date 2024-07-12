@@ -1,7 +1,9 @@
 package com.example.Security1.service;
 
-//import com.helloIftekhar.springJwt.repository.UserRepository;
+
+import com.example.Security1.model.UserDetailsImpl;
 import com.example.Security1.repository.UserRepository;
+//import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,7 +19,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetailsImpl loadUserByUsername(String username) throws UsernameNotFoundException {
         return repository.findByUsername(username)
                 .orElseThrow(()-> new UsernameNotFoundException("User not found"));
     }
