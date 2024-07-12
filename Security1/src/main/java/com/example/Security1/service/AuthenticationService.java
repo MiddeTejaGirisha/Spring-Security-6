@@ -1,11 +1,7 @@
 package com.example.Security1.service;
 
 
-//import com.helloIftekhar.springJwt.model.AuthenticationResponse;
-//import com.helloIftekhar.springJwt.model.Token;
-//import com.helloIftekhar.springJwt.model.User;
-//import com.helloIftekhar.springJwt.repository.TokenRepository;
-//import com.helloIftekhar.springJwt.repository.UserRepository;
+
 import com.example.Security1.model.AuthenticationResponse;
 import com.example.Security1.model.Token;
 import com.example.Security1.model.User;
@@ -92,6 +88,7 @@ public class AuthenticationService {
         return new AuthenticationResponse(accessToken, refreshToken, "User login was successful");
 
     }
+
     private void revokeAllTokenByUser(User user) {
         List<Token> validTokens = tokenRepository.findAllAccessTokensByUser(user.getId());
         if(validTokens.isEmpty()) {

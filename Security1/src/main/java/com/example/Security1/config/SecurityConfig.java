@@ -1,8 +1,5 @@
 package com.example.Security1.config;
 
-
-//import com.helloIftekhar.springJwt.filter.JwtAuthenticationFilter;
-//import com.helloIftekhar.springJwt.service.UserDetailsServiceImp;
 import com.example.Security1.filter.JwtAuthenticationFilter;
 import com.example.Security1.service.UserDetailsServiceImp;
 import org.springframework.context.annotation.Bean;

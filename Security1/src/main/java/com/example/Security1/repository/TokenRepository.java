@@ -1,6 +1,5 @@
 package com.example.Security1.repository;
 
-//import com.helloIftekhar.springJwt.model.Token;
 import com.example.Security1.model.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

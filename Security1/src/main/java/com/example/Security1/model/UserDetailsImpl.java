@@ -9,6 +9,16 @@ import java.util.Collection;
 import java.util.List;
 
 public class UserDetailsImpl implements UserDetails {
+
+    public UserDetailsImpl(User user) {
+        this.id = user.getId();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.role = user.getRole();
+        this.tokens = user.getTokens();
+    }
     @Override
     public boolean isAccountNonExpired() {
         return true;

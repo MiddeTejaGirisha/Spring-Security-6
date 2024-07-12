@@ -1,6 +1,7 @@
 package com.example.Security1.service;
 
 
+import com.example.Security1.model.User;
 import com.example.Security1.model.UserDetailsImpl;
 import com.example.Security1.repository.UserRepository;
 //import org.springframework.security.core.userdetails.UserDetails;
@@ -19,8 +20,12 @@ public class UserDetailsServiceImp implements UserDetailsService {
     }
 
     @Override
-    public UserDetailsImpl loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findByUsername(username)
-                .orElseThrow(()-> new UsernameNotFoundException("User not found"));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = repository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return new UserDetailsImpl(user);
+
     }
+
+
 }

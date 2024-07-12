@@ -17,7 +17,8 @@ import java.util.Date;
 import java.util.function.Function;
 
 @Service
-public class JwtService {
+public class
+JwtService {
 
     @Value("${application.security.jwt.secret-key}")
     private String secretKey;
